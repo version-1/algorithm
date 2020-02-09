@@ -31,7 +31,7 @@ const isPermutation = (a, b) => {
 };
 
 const urlify = (str, trueLength) => {
-  acc = '';
+  let acc = '';
   for (var i = 0; i <= trueLength - 1; i++) {
     if (i + 1 > str.length) {
       return acc;
@@ -48,10 +48,10 @@ const urlify = (str, trueLength) => {
 };
 
 const isPalindromePermutation = str => {
-  maps = {};
-  acc = '';
-  oddCount = 0;
-  spaceCount = 0;
+  let maps = {};
+  let acc = '';
+  let oddCount = 0;
+  let spaceCount = 0;
   for (var i = 0; i <= str.length - 1; i++) {
     const char = str[i].toLowerCase();
     if (char !== ' ') {
@@ -79,7 +79,7 @@ const isPalindromePermutation = str => {
 };
 
 const oneAway = (a, b) => {
-  acc = a;
+  let acc = a;
   for (var i = 0; i <= b.length - 1; i++) {
     const index = acc.indexOf(b[i]);
     if (index > -1) {
@@ -90,10 +90,33 @@ const oneAway = (a, b) => {
   return acc.length <= 1;
 };
 
+const compression = str => {
+  let compression = [];
+  let acc = '';
+  for (var i = 0; i <= str.length - 1; i++) {
+    const char = str[i];
+    if (compression[0]) {
+      if (char === compression[0]) {
+        compression[1]++;
+      } else {
+        acc = acc + compression[0] + compression[1];
+        compression[0] = char;
+        compression[1] = 1;
+      }
+    } else {
+      compression[0] = char;
+      compression[1] = 1;
+    }
+  }
+  acc = acc + compression[0] + compression[1];
+  return acc.length < str.length ? acc : str;
+};
+
 module.exports = {
   isUnique,
   isPermutation,
   urlify,
   isPalindromePermutation,
-  oneAway
+  oneAway,
+  compression,
 };

@@ -63,3 +63,15 @@ test('oneAway', () => {
     expect(M.oneAway(input[0], input[1])).toEqual(expectation);
   });
 });
+
+test('compression', () => {
+  const testCase = [
+    ['aabcccccaaa', 'a2b1c5a3'],
+    ['AAAbbbbbCCCCd', 'A3b5C4d1'],
+    ['abc', 'abc'],
+    ['', ''],
+  ];
+  testCase.map(([input, expectation]) => {
+    expect(M.compression(input)).toEqual(expectation);
+  });
+});
