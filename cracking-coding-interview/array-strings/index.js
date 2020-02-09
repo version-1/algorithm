@@ -47,8 +47,40 @@ const urlify = (str, trueLength) => {
   return acc;
 };
 
+const isPalindromePermutation = str => {
+  maps = {};
+  acc = '';
+  oddCount = 0;
+  spaceCount = 0;
+  for (var i = 0; i <= str.length - 1; i++) {
+    const char = str[i].toLowerCase();
+    if (char !== ' ') {
+      if (maps[char]) {
+        maps[char]++;
+        if (maps[char] % 2 === 0) {
+          oddCount--;
+        } else {
+          oddCount++;
+        }
+      } else {
+        maps[char] = 1;
+        oddCount++;
+      }
+    } else {
+      spaceCount++;
+    }
+  }
+  const isEven = (str.length - spaceCount) % 2 === 0;
+  if (isEven) {
+    return oddCount <= 0;
+  } else {
+    return oddCount === 1;
+  }
+};
+
 module.exports = {
   isUnique,
   isPermutation,
   urlify,
+  isPalindromePermutation,
 };

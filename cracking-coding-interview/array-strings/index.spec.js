@@ -35,3 +35,18 @@ test('urlify', () => {
     expect(M.urlify(input[0], input[1])).toEqual(expectation);
   });
 });
+
+test('isPalindromePermutation', () => {
+  const testCase = [
+    ['Tact Coa', true],
+    ['Tact Coe', false],
+    ['workkrow', true],
+    ['work   krow', true],
+    ['t', true],
+    ['   ', true],
+    ['', true]
+  ];
+  testCase.map(([input, expectation]) => {
+    expect(M.isPalindromePermutation(input)).toEqual(expectation);
+  });
+});
