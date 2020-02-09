@@ -78,9 +78,22 @@ const isPalindromePermutation = str => {
   }
 };
 
+const oneAway = (a, b) => {
+  acc = a;
+  for (var i = 0; i <= b.length - 1; i++) {
+    const index = acc.indexOf(b[i]);
+    if (index > -1) {
+      acc = acc.slice(0, index) + acc.slice(index + 1, acc.length);
+    }
+  }
+
+  return acc.length <= 1;
+};
+
 module.exports = {
   isUnique,
   isPermutation,
   urlify,
   isPalindromePermutation,
+  oneAway
 };

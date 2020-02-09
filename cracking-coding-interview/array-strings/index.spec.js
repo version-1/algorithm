@@ -50,3 +50,16 @@ test('isPalindromePermutation', () => {
     expect(M.isPalindromePermutation(input)).toEqual(expectation);
   });
 });
+
+test('oneAway', () => {
+  const testCase = [
+    [['pale', 'ple'], true],
+    [['pales', 'pale'], true],
+    [['pale', 'bale'], true],
+    [['pale', 'pala'], true],
+    [['pale', 'bake'], false],
+  ];
+  testCase.map(([input, expectation]) => {
+    expect(M.oneAway(input[0], input[1])).toEqual(expectation);
+  });
+});
