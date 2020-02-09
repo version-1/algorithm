@@ -1,0 +1,12 @@
+{
+  "name": "algorithm",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:version-1/algorithm.git",
+  "author": "version-1 <j.onodera26@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1"
+  }
+}
