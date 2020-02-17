@@ -1,4 +1,4 @@
-const removeDuplicateList = list => {
+const uniq = list => {
   const map = {};
   let cursor = list;
   let previous = null;
@@ -14,6 +14,25 @@ const removeDuplicateList = list => {
   return list;
 };
 
+const uniqWithoutBuffer = list => {
+  let cursor = list;
+  while (cursor) {
+    let runner = cursor;
+    let isDuplicate = false;
+    while (runner.next) {
+      if (runner.next.data === cursor.data) {
+        runner.next = runner.next.next;
+      } else {
+        runner = runner.next;
+      }
+    }
+
+    cursor = cursor.next;
+  }
+  return list;
+};
+
 module.exports = {
-  removeDuplicateList,
+  uniq,
+  uniqWithoutBuffer,
 };
