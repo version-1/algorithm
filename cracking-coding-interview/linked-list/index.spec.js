@@ -43,4 +43,17 @@ describe('linked-list', () => {
       expect(L.toArray(list)).toEqual(expectation);
     });
   });
+
+  test('findIndexFromEnd', () => {
+    const head = L.fromArray([1, 2, 3, 4, 5, 6]);
+    const testCase = [
+      [{head, k: 1}, 6],
+      [{head, k: 3}, 4],
+      [{head, k: 6}, 1],
+    ];
+    testCase.map(([input, expectation], index) => {
+      const node = M.findIndexFromEnd(input);
+      expect(node.data).toEqual(expectation);
+    });
+  });
 });
