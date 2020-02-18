@@ -42,7 +42,7 @@ const uniqWithoutBuffer = list => {
 /* 2.2 Implement an algorithm to find the kth to last element of a singly linked list
  *
  */
-const findIndexFromEnd = ({ head, k }) => {
+const findIndexFromEnd = ({head, k}) => {
   let p1 = head;
   let p2 = head;
 
@@ -58,8 +58,36 @@ const findIndexFromEnd = ({ head, k }) => {
   return p2;
 };
 
+/*  implement an algorithm to delete a node in the middle
+ *  (i.e, any node but the first and last node, not necessarily the  the exact middle)
+ *  of a singly linked list given only access to that node
+ */
+const removeMiddle = head => {
+  let p1 = head;
+  let p2 = head;
+  let previous = null;
+  if (!p1.next) {
+    return
+  }
+
+  if (!p1.next.next) {
+    p1.data = p1.next.data
+    p1.next = null
+    return
+  }
+  while (p2) {
+    p2 = p2.next ? p2.next.next : null;
+    if (!p2) {
+      previous.next = p1.next;
+    }
+    previous = p1;
+    p1 = p1.next;
+  }
+};
+
 module.exports = {
   uniq,
   uniqWithoutBuffer,
-  findIndexFromEnd
+  findIndexFromEnd,
+  removeMiddle,
 };

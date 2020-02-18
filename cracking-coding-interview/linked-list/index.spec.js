@@ -56,4 +56,18 @@ describe('linked-list', () => {
       expect(node.data).toEqual(expectation);
     });
   });
+
+  test('removeMiddle', () => {
+    const testCase = [
+      [L.fromArray([1, 2, 3, 4, 5, 6]), [1, 2, 4, 5, 6]],
+      [L.fromArray([1, 2,  5, 7, 9]), [1, 2, 7, 9]],
+      [L.fromArray([1, 2]), [2]],
+      [L.fromArray([1]), [1]],
+    ];
+    testCase.map(([input, expectation], index) => {
+      M.removeMiddle(input);
+      expect(L.toArray(input)).toEqual(expectation);
+    });
+
+  })
 });
