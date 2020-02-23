@@ -149,6 +149,21 @@ const sumList = (n1, n2) => {
   return node;
 };
 
+/**
+ * isPalindrome
+ */
+const isPalindrome = (node) => {
+  let cursor = node
+  let str = ''
+  let reversed = ''
+  while(cursor) {
+    str = str + cursor.data
+    reversed = cursor.data + reversed
+    cursor = cursor.next
+  }
+  return str === reversed
+}
+
 module.exports = {
   uniq,
   uniqWithoutBuffer,
@@ -156,4 +171,5 @@ module.exports = {
   removeMiddle,
   partition,
   sumList,
+  isPalindrome
 };

@@ -94,4 +94,16 @@ describe('linked-list', () => {
       expect(L.toArray(node)).toEqual(expectation);
     });
   });
+
+  test('isPalindrome', () => {
+    const testCase = [
+      [L.fromArray('anna'.split('')), true],
+      [L.fromArray('tattarrattat'.split('')), true],
+      [L.fromArray('work'.split('')), false],
+    ];
+    testCase.map(([input, expectation], index) => {
+      const res = M.isPalindrome(input);
+      expect(res).toEqual(expectation);
+    });
+  });
 });
