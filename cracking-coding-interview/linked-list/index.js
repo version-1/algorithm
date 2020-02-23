@@ -1,3 +1,4 @@
+const L = require('./helper.js');
 /* 2.1 Write code to remove duplicates from an unsorted linked list.
  *
  */
@@ -67,13 +68,13 @@ const removeMiddle = head => {
   let p2 = head;
   let previous = null;
   if (!p1.next) {
-    return
+    return;
   }
 
   if (!p1.next.next) {
-    p1.data = p1.next.data
-    p1.next = null
-    return
+    p1.data = p1.next.data;
+    p1.next = null;
+    return;
   }
   while (p2) {
     p2 = p2.next ? p2.next.next : null;
@@ -85,9 +86,74 @@ const removeMiddle = head => {
   }
 };
 
+/**
+ * Write code to partition a linked list around a value x, such that all nodes less than x come
+ * before all nodes greater than or equal to x. If x is contained within the list, the values of
+ * x only need to be after the elements lesss than x(see below). The partition element x can appear
+ * anywhere in the "right partition", it does not to appear between the left and right partitions
+ *
+ */
+const partition = ({node, x}) => {
+  let head = node;
+  let tail = node;
+  while (node) {
+    next = node.next;
+    if (node.data < x) {
+      node.next = head;
+      head = node;
+    } else {
+      tail.next = node;
+      tail = node;
+    }
+    node = next;
+  }
+  tail.next = null;
+
+  return head;
+};
+
+/**
+ * Sum List
+ *
+ */
+
+const sumList = (n1, n2) => {
+  let sum = 0;
+  let str = '';
+  let node = n1;
+  while (node) {
+    str = node.data + str;
+    node = node.next;
+  }
+
+  sum = Number(str);
+  str = '';
+  node = n2;
+  while (node) {
+    str = node.data + str;
+    node = node.next;
+  }
+  sumStr = sum + Number(str) + '';
+  node = L.List();
+  let cursor = node;
+  for (let i = sumStr.length - 1; i >= 0; i--) {
+    cursor.data = Number(sumStr.slice(i, i + 1));
+    if (i !== 0) {
+      const n = L.List();
+      cursor.next = n;
+      cursor = n;
+    }
+  }
+  cursor.next = null;
+
+  return node;
+};
+
 module.exports = {
   uniq,
   uniqWithoutBuffer,
   findIndexFromEnd,
   removeMiddle,
+  partition,
+  sumList,
 };

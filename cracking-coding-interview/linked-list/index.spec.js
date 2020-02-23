@@ -60,7 +60,7 @@ describe('linked-list', () => {
   test('removeMiddle', () => {
     const testCase = [
       [L.fromArray([1, 2, 3, 4, 5, 6]), [1, 2, 4, 5, 6]],
-      [L.fromArray([1, 2,  5, 7, 9]), [1, 2, 7, 9]],
+      [L.fromArray([1, 2, 5, 7, 9]), [1, 2, 7, 9]],
       [L.fromArray([1, 2]), [2]],
       [L.fromArray([1]), [1]],
     ];
@@ -68,6 +68,30 @@ describe('linked-list', () => {
       M.removeMiddle(input);
       expect(L.toArray(input)).toEqual(expectation);
     });
+  });
+  test('partition', () => {
+    const testCase = [
+      [
+        {node: L.fromArray([3, 5, 8, 5, 10, 2, 1]), x: 5},
+        [1, 2, 3, 5, 8, 5, 10],
+      ],
+    ];
+    testCase.map(([input, expectation], index) => {
+      const node = M.partition(input);
+      expect(L.toArray(node)).toEqual(expectation);
+    });
+  });
 
-  })
+  test('sumList', () => {
+    const testCase = [
+      [
+        [L.fromArray([7, 1, 6]), L.fromArray([5, 9, 2])],
+        [2, 1, 9],
+      ],
+    ];
+    testCase.map(([input, expectation], index) => {
+      const node = M.sumList(input[0], input[1]);
+      expect(L.toArray(node)).toEqual(expectation);
+    });
+  });
 });
