@@ -152,17 +152,53 @@ const sumList = (n1, n2) => {
 /**
  * isPalindrome
  */
-const isPalindrome = (node) => {
-  let cursor = node
-  let str = ''
-  let reversed = ''
-  while(cursor) {
-    str = str + cursor.data
-    reversed = cursor.data + reversed
-    cursor = cursor.next
+const isPalindrome = node => {
+  let cursor = node;
+  let str = '';
+  let reversed = '';
+  while (cursor) {
+    str = str + cursor.data;
+    reversed = cursor.data + reversed;
+    cursor = cursor.next;
   }
-  return str === reversed
-}
+  return str === reversed;
+};
+
+/**
+ * Intersection
+ */
+const isIntersection = (n1, n2) => {
+  let stack1 = [];
+  let stack2 = [];
+  while (n1) {
+    stack1.push(n1);
+    n1 = n1.next;
+  }
+
+  while (n2) {
+    stack2.push(n2);
+    n2 = n2.next;
+  }
+
+  if (stack1.length === 0 || stack2.length === 0) {
+    return;
+  }
+
+  const peek = (array) => array.slice(-1)[0]
+
+  if (peek(stack1) !== peek(stack2)) {
+    return;
+  }
+
+  let intersect
+  while(peek(stack1) === peek(stack2)) {
+    intersect = peek(stack1)
+    stack1.pop()
+    stack2.pop()
+  }
+
+  return intersect
+};
 
 module.exports = {
   uniq,
@@ -171,5 +207,6 @@ module.exports = {
   removeMiddle,
   partition,
   sumList,
-  isPalindrome
+  isPalindrome,
+  isIntersection
 };

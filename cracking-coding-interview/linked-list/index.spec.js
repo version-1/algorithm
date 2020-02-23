@@ -106,4 +106,27 @@ describe('linked-list', () => {
       expect(res).toEqual(expectation);
     });
   });
+
+  test('isIntersection', () => {
+    var a = L.List({data: 'a'});
+    var b = L.List({data: 'b'});
+    var c = L.List({data: 'c'});
+    a.next = b;
+    b.next = c;
+
+    var a1 = L.List({data: 'a1'});
+    var b1 = L.List({data: 'b1'});
+    var c1 = L.List({data: 'c1'});
+
+    a1.next = b1;
+    b1.next = c1;
+    c1.next = b;
+    const testCase = [
+      [[a, a1], b],
+    ];
+    testCase.map(([input, expectation], index) => {
+      const res = M.isIntersection(input[0], input[1]);
+      expect(res).toEqual(expectation);
+    });
+  });
 });
