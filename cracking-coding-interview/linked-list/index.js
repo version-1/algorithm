@@ -184,20 +184,49 @@ const isIntersection = (n1, n2) => {
     return;
   }
 
-  const peek = (array) => array.slice(-1)[0]
+  const peek = array => array.slice(-1)[0];
 
   if (peek(stack1) !== peek(stack2)) {
     return;
   }
 
-  let intersect
-  while(peek(stack1) === peek(stack2)) {
-    intersect = peek(stack1)
-    stack1.pop()
-    stack2.pop()
+  let intersect;
+  while (peek(stack1) === peek(stack2)) {
+    intersect = peek(stack1);
+    stack1.pop();
+    stack2.pop();
   }
 
-  return intersect
+  return intersect;
+};
+
+/**
+ * where loop
+ */
+
+const whereLoop = head => {
+  let fast = head;
+  let slow = head;
+
+  while (fast && fast.next) {
+    fast = fast.next;
+    slow = slow.next.next;
+
+    if (fast == slow) {
+      break;
+    }
+  }
+
+  if (!fast || !fast.next) {
+    return null;
+  }
+
+  slow = head
+  while(fast != slow) {
+    fast = fast.next
+    slow = slow.next
+  }
+  return fast
 };
 
 module.exports = {
@@ -208,5 +237,6 @@ module.exports = {
   partition,
   sumList,
   isPalindrome,
-  isIntersection
+  isIntersection,
+  whereLoop
 };

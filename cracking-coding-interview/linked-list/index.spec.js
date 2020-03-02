@@ -129,4 +129,26 @@ describe('linked-list', () => {
       expect(res).toEqual(expectation);
     });
   });
+
+  test('whereLoop', () => {
+    let a = L.List({data: 'a'});
+    let b = L.List({data: 'b'});
+    let c = L.List({data: 'c'});
+    let d = L.List({data: 'd'});
+    let e = L.List({data: 'e'});
+
+    a.next = b
+    b.next = c
+    c.next = d
+    d.next = e
+    e.next = c;
+
+    const testCase = [
+      [a, c],
+    ];
+    testCase.map(([input, expectation], index) => {
+      const res = M.whereLoop(input);
+      expect(res).toEqual(expectation);
+    });
+  });
 });
